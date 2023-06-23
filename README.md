@@ -21,7 +21,7 @@ This Unreal Engine plugin provides a convenient wrapper around the WebSockets mo
 2. Extract the downloaded ZIP file.
 3. Copy the `WebSocketsPlugin` folder into your Unreal Engine project's `Plugins` directory.
 4. Launch Unreal Engine and open your project.
-5. The plugin will automatically be enabled for your project.
+5. Enable plugin in `Plugins` Setting and restart the editor.
 
 ## Usage
 

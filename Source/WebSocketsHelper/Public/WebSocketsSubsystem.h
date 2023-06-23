@@ -9,7 +9,7 @@
 class IWebSocket;
 
 /**
- * 
+ * Game Instance Subsystem that handles IWebSocket operations and offers Blueprint support
  */
 UCLASS()
 class WEBSOCKETSHELPER_API UWebSocketsSubsystem : public UGameInstanceSubsystem

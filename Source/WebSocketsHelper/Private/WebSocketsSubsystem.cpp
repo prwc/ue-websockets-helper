@@ -52,6 +52,7 @@ bool UWebSocketsSubsystem::Connect(const FString& Channel, const FString& Server
 	WebSocket->OnMessage().AddLambda([this, Channel](const FString& MessageString)
 	{
 		if(IsValid(this) == false) return;
+		OnReceivedMessageInternal(Channel, MessageString);
 	});
 
 	WebSocket->Connect();
@@ -100,4 +101,13 @@ void UWebSocketsSubsystem::OnConnectionClosedInternal(const FString& Channel, co
 	OnConnectionClosed.Broadcast(Channel, Reason);
 
 	UE_LOG(LogTemp, Log, TEXT("WebSocketsSubsystem, Closed, Channel: %s, Reason: %s"), *Channel, *Reason);
+}
+
+void UWebSocketsSubsystem::OnReceivedMessageInternal(const FString& Channel, const FString& Message)
+{
+	if(WebSocketChannelMap.Contains(Channel) == false) return;
+	
+	OnReceivedMessage.Broadcast(Channel, Message);
+
+	UE_LOG(LogTemp, Log, TEXT("WebSocketsSubsystem, Received Message, Channel: %s, Message: %s"), *Channel, *Message);
 }

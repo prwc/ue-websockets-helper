@@ -40,11 +40,16 @@ public:
 	DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnConnectionError, const FString&, Channel, const FString&, Error);
 	UPROPERTY(BlueprintAssignable)
 	FOnConnectionError OnConnectionError;
+
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnReceivedMessage, const FString&, Channel, const FString&, Message);
+	UPROPERTY(BlueprintAssignable)
+	FOnReceivedMessage OnReceivedMessage;
 	
 private:
 	void OnConnectionConnectedInternal(const FString& Channel);
 	void OnConnectionErrorInternal(const FString& Channel, const FString& Error);
 	void OnConnectionClosedInternal(const FString& Channel, const FString& Reason);
+	void OnReceivedMessageInternal(const FString& Channel, const FString& Message);
 	
 	TMap<FString, TSharedRef<IWebSocket>> WebSocketChannelMap;
 };
